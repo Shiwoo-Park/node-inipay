@@ -1,0 +1,16 @@
+{
+  "name": "node-inipay",
+  "version": "1.0.0",
+  "description":"Node library for inipay",
+  "keywords":["payment","inicis","inipay","payment gateway","pg"],
+  "private": false,
+  "author": "shiwoopark",
+  "license": "MIT",
+  "repository" :{
+    "type" : "git",
+    "url" : "https://github.com/Shiwoo-Park/node-inipay.git"
+  },
+  "dependencies": {
+    "q": "^1.4.1"
+  }
+}
