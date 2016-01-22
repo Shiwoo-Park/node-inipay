@@ -20,10 +20,10 @@ not completed yet
 - **Usage**
 
 ```javascript
-// API for receiving data from inipay (Express example)
 var express = require('express');
 var router = express.Router();
 
+// API for receiving data from inipay (Express example)
 router.post('/pay/inipayStandard', function(req, res){
 
     var authData = req.body; 
