@@ -1,6 +1,5 @@
 // Common variable
 var ip = "127.0.0.1";
-ip = "10.70.12.179";
 var httpPort = "3000";
 var httpsPort = "3010";
 
@@ -31,4 +30,13 @@ var alertCallback = function(response){
     if(typeof msg === "object")
         msg = JSON.stringify(msg)
     alert(msg);
+};
+
+var getQueryString = function(obj) {
+    var str = [];
+    for(var p in obj)
+        if (obj.hasOwnProperty(p)) {
+            str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+        }
+    return str.join("&");
 };

@@ -67,7 +67,7 @@ Key | Value Type |  Description
 
 - **failCallback** : Input argument will be "Error Object". 
 
-- **successCallback** : It's optional. This will be called after all preceding operation is done successfully. 
+- **successCallback** : This will be called after all preceding operation is done successfully. 
 
 
 ----------------

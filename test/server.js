@@ -80,7 +80,6 @@ app.post('/standard/return', function(req, res){
     };
 
     var successCallback = function(){
-        // Optional function
         // Will be called after all process finished
         res.send('Payment Success');
     };
@@ -96,14 +95,6 @@ app.get('/mobile', function(req, res){
             "bank": "https://mobile.inicis.com/smart/bank/",
             "mobile": "https://mobile.inicis.com/smart/mobile/"
         },
-        //orderData:{
-        //    P_MID:MID,
-        //    P_GOODS:orderData.goodName,
-        //    P_AMT:orderData.price,
-        //    P_OID:orderData.oid,
-        //    P_EMAIL:"abc@abc.com",
-        //    P_UNAME:"홍길동"
-        //}
         orderData:{
             mid:MID,
             goodName:orderData.goodName,
@@ -139,7 +130,6 @@ app.post('/mobile/return', function(req, res){
     };
 
     var successCallback = function(){
-        // Optional function
         // Will be called after all process finished
         res.send('Payment Success');
     };

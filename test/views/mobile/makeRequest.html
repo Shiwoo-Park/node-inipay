@@ -3,7 +3,7 @@
 <head>
     <title>node-inipay</title>
 
-    <!--<meta http-equiv="Content-Type" content="text/html;charset=euc-kr"/> -->
+    <!-- <meta http-equiv="Content-Type" content="text/html;charset=euc-kr"/> -->
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <style type="text/css">
         body { background-color: #efefef;}
@@ -19,7 +19,10 @@
 
     <button ng-click="paybtn()" style="padding:10px">결제요청</button>
 
-    <form id="SendPayForm_id" method="POST">
+    <form id="SendPayForm_id" method="POST" >
+        <span ng-repeat="addKey in addDataKeys">
+            {{addKey}} : <input type="text" name="{{addKey}}" value="{{addData[addKey]}}" /><br/>
+        </span>
         P_GOODS : <input type="text" name="P_GOODS" value="{{orderData.goodName}}" /><br/>
         P_MID : <input type="text" name="P_MID" value="{{orderData.mid}}" /><br/>
         P_AMT : <input type="text" name="P_AMT" value="{{orderData.price}}" /><br/>
@@ -28,8 +31,8 @@
         P_UNAME : <input type="text" name="P_UNAME" value="홍길동" /><br/>
         P_NEXT_URL : <input type="text" name="P_NEXT_URL" value="{{httpsDomain+'/mobile/return'}}" /><br/>
         PayMethod :
-        <select ng-model="reqURL" form="SendPayForm_id">
-            <option ng-repeat="method in payMethods" value="{{linkDic[method]}}">{{method}}</option>
+        <select ng-model="payMethod" form="SendPayForm_id" ng-change="onChangePayMethod(payMethod)">
+            <option ng-repeat="method in payMethods" value="{{method}}">{{method}}</option>
         </select>
     </form>
 
@@ -54,8 +57,11 @@
         $scope.httpsDomain = httpsDomain;
 
         $scope.reqURL = "";
+        $scope.payMethod = "";
         $scope.linkDic = {};
         $scope.orderData = {};
+        $scope.addData = {};
+        $scope.addDataKeys = [];
         $scope.payMethods = [];
 
         var queryDic = getQueryDic(window.location.search);
@@ -90,6 +96,29 @@
             $scope.payMethods = Object.keys(res.data.payMethods);
             $scope.linkDic = res.data.payMethods;
         });
+
+        $scope.onChangePayMethod = function(method){
+            console.log("onChangePayMethod ",method);
+
+            $scope.reqURL = $scope.linkDic[method];
+            $scope.addData = {};
+
+            if(method === "mobile"){
+                $scope.addData["P_HPP_METHOD"] = 2;
+            }else if(method === "wcard"){
+                var reservedData = { // decided by INIpay mobile policy
+                    below1000: "Y",  // enable payment lower than 1000won (default:N)
+                    twotrs_isp: "Y",
+                    block_isp: "Y",
+                    twotrs_isp_noti: "N",
+                    apprun_check: "Y" // intent app call (recommended)
+
+                };
+                $scope.addData["P_RESERVED"] = getQueryString(reservedData);
+                $scope.addData["P_QUOTABASE"] = "01";  // monthly installment (separated payment)
+            }
+            $scope.addDataKeys = Object.keys($scope.addData);
+        };
 
         $scope.paybtn = function(){
             document.getElementById("SendPayForm_id").setAttribute("action", $scope.reqURL);
