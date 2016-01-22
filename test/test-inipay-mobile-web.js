@@ -1,6 +1,6 @@
 
 
-var inipay = require('./index').mobileweb;
+var inipay = require('../index').mobileweb;
 
 var payOption = {
 

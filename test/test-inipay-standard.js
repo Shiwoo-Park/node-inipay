@@ -1,6 +1,6 @@
 
 
-var inipay = require('./index').standard;
+var inipay = require('../index').standard;
 
 var payOption = {
 
