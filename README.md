@@ -29,7 +29,7 @@ var returnFromInipay = function(req, res){
     
     var shopData = {
         mid:'INIpayTest',
-        totalPrice:'5000,
+        totalPrice:'5000',
         goodName:'5 Apples'
     };
     
