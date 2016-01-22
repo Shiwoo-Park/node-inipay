@@ -12,5 +12,13 @@
   },
   "dependencies": {
     "q": "^1.4.1"
+  },
+  "devDependencies": {
+    "express": "~4.13.1",
+    "body-parser": "~1.13.2",
+    "mobile-detect": "^1.2.1"
+  },
+  "scripts": {
+    "start": "node test/server.js"
   }
 }
