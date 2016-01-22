@@ -20,9 +20,11 @@ not completed yet
 - **Usage**
 
 ```javascript
-// Receiving API from inipay (Express example)
+// API for receiving data from inipay (Express example)
+var express = require('express');
+var router = express.Router();
 
-var returnFromInipay = function(req, res){
+router.post('/pay/inipayStandard', function(req, res){
 
     var authData = req.body; 
     var inipay = require('node-inipay').standard;
@@ -40,7 +42,7 @@ var returnFromInipay = function(req, res){
         // handle error
     
     });
-}
+})
 ```
 - **shopData**
 
