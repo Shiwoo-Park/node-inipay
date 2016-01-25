@@ -137,6 +137,22 @@ app.post('/mobile/return', function(req, res){
     inipayMobile.pay(shopData, authData, shopLogicCallback, failCallback, successCallback);
 });
 
+app.post('/mobile/noti', function(req, res){
+    var inipayMobile = inipay.mobile;
+    var notiData = req.body;
+
+    console.log("notiData : ",req.body);
+
+    inipayMobile.noticeBank(notiData, res, function () {
+
+        // implement your shop logic here
+
+    }, function (err) {
+        console.log(err);
+        res.status(500).send('Internal Server Error');
+    })
+});
+
 app.use(function (err, req, res, next) {
     if (err) {
         console.log(err);

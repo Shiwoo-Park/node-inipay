@@ -30,6 +30,7 @@
         P_EMAIL : <input type="text" name="P_EMAIL" value="abc@abc.com" /><br/>
         P_UNAME : <input type="text" name="P_UNAME" value="홍길동" /><br/>
         P_NEXT_URL : <input type="text" name="P_NEXT_URL" value="{{httpsDomain+'/mobile/return'}}" /><br/>
+        P_NOTI_URL : <input type="text" name="P_NOTI_URL" value="{{httpsDomain+'/mobile/noti'}}" /><br/>
         PayMethod :
         <select ng-model="payMethod" form="SendPayForm_id" ng-change="onChangePayMethod(payMethod)">
             <option ng-repeat="method in payMethods" value="{{method}}">{{method}}</option>
@@ -117,6 +118,7 @@
                 $scope.addData["P_RESERVED"] = getQueryString(reservedData);
                 $scope.addData["P_QUOTABASE"] = "01";  // monthly installment (separated payment)
             }
+
             $scope.addDataKeys = Object.keys($scope.addData);
         };
 
