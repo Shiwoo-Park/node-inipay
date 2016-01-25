@@ -1,6 +1,6 @@
 !.gitignore
 !README.md
+npm-debug.log
 
 .idea/*
 .node_modules/*
-.npm-dbug.log
